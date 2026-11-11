@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>THUNDER — Thirteen Undying Generation</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;1,500&family=Jost:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#F6F2EA; --surface:#FFFFFF; --ink:#14213A; --muted:#5B6578; --gold:#9A7B35; --line:#D9D2C2;
+  --hero1:#14213A; --hero2:#1E3254; --hero-ink:#F6F2EA; --hero-gold:#D4B46A;
+  box-sizing:border-box; padding-top:env(safe-area-inset-top,0px); padding-bottom:env(safe-area-inset-bottom,0px);
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){--bg:#0C1424; --surface:#131E34; --ink:#EDE8DC; --muted:#9AA5BA; --gold:#D4B46A; --line:#26344F; --hero1:#0C1424; --hero2:#16264A;}
+}
+:root[data-theme="dark"]{--bg:#0C1424; --surface:#131E34; --ink:#EDE8DC; --muted:#9AA5BA; --gold:#D4B46A; --line:#26344F; --hero1:#0C1424; --hero2:#16264A;}
+html{scroll-padding-top:env(safe-area-inset-top,0px);scroll-behavior:smooth}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:'Jost',system-ui,sans-serif;font-weight:300;line-height:1.7;font-size:17px}
+h1,h2,h3{font-family:'Cormorant Garamond',Georgia,serif;font-weight:500;margin:0;line-height:1.1}
+a{color:inherit}
+:focus-visible{outline:2px solid var(--gold);outline-offset:3px}
+.wrap{max-width:1080px;margin:0 auto;padding:0 24px}
+nav{position:sticky;top:env(safe-area-inset-top,0px);z-index:5;background:color-mix(in srgb,var(--bg) 88%,transparent);backdrop-filter:blur(8px);border-bottom:1px solid var(--line)}
+nav .wrap{display:flex;justify-content:space-between;align-items:center;height:56px}
+nav b{font-family:'Cormorant Garamond',serif;font-size:22px;font-weight:600}
+nav div{display:flex;gap:22px;font-size:14px;overflow-x:auto}
+nav a{text-decoration:none;color:var(--muted);white-space:nowrap}
+nav a:hover{color:var(--gold)}
+.hero{background:linear-gradient(160deg,var(--hero1),var(--hero2));color:var(--hero-ink);padding:110px 0 90px;text-align:center;position:relative;overflow:hidden}
+.hero::before{content:"";position:absolute;inset:24px;border:1px solid color-mix(in srgb,var(--hero-gold) 45%,transparent);pointer-events:none}
+.hero small{display:block;font-size:15px;letter-spacing:.14em;color:var(--hero-gold);margin-bottom:22px}
+.hero h1{font-size:clamp(54px,11vw,128px);font-weight:500;letter-spacing:-.01em;animation:rise 1.2s ease both}
+.hero h1 i{color:var(--hero-gold)}
+.hero p{max-width:520px;margin:26px auto 0;opacity:.82}
+.stats{display:flex;justify-content:center;gap:clamp(24px,7vw,80px);margin-top:54px;flex-wrap:wrap}
+.stats div{font-size:14px;opacity:.85}
+.stats b{display:block;font-family:'Cormorant Garamond',serif;font-size:44px;font-weight:500;color:var(--hero-gold);line-height:1}
+@keyframes rise{from{opacity:0;transform:translateY(18px)}to{opacity:1;transform:none}}
+@media (prefers-reduced-motion:reduce){.hero h1{animation:none}html{scroll-behavior:auto}}
+section{padding:88px 0 20px}
+h2{font-size:clamp(36px,5vw,54px);margin-bottom:10px}
+.lede{color:var(--muted);max-width:560px;margin:0 0 36px}
+.tools{display:flex;gap:12px;flex-wrap:wrap;margin-bottom:28px}
+.tools input,.tools select{font:inherit;font-size:15px;padding:10px 16px;border:1px solid var(--line);background:var(--surface);color:var(--ink);border-radius:999px;min-width:200px}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(210px,1fr));gap:18px}
+.card{background:var(--surface);border:1px solid var(--line);padding:26px 22px;text-align:center}
+.ava{width:76px;height:76px;margin:0 auto 14px;border-radius:50%;display:grid;place-items:center;font-family:'Cormorant Garamond',serif;font-size:28px;color:var(--hero-gold);background:var(--hero1);border:2px solid var(--gold)}
+.card h3{font-size:23px}
+.card p{margin:4px 0 0;font-size:14px;color:var(--muted)}
+.card em{display:block;margin-top:10px;font-size:13px;font-style:normal;color:var(--gold)}
+.empty{color:var(--muted);padding:30px 0}
+.tl{border-left:1px solid var(--gold);margin-left:8px;padding-left:34px}
+.tl article{position:relative;padding-bottom:34px}
+.tl article::before{content:"";position:absolute;left:-40px;top:9px;width:11px;height:11px;border-radius:50%;background:var(--gold)}
+.tl time{font-family:'Cormorant Garamond',serif;font-size:20px;color:var(--gold)}
+.tl h3{font-size:27px}
+.tl p{margin:4px 0 0;color:var(--muted);max-width:620px}
+.merch{display:grid;grid-template-columns:1fr 1fr;gap:40px;align-items:center}
+.shirt{background:var(--surface);border:1px solid var(--line);padding:30px;text-align:center}
+.shirt svg{width:min(100%,320px)}
+.shirt path{transition:fill .35s}
+.sw{display:flex;gap:12px;margin:22px 0 26px}
+.sw button{width:42px;height:42px;border-radius:50%;border:2px solid var(--line);cursor:pointer;padding:0}
+.sw button[aria-pressed="true"]{outline:2px solid var(--gold);outline-offset:3px}
+.merch h3{font-size:34px}
+.merch ul{padding:0;margin:16px 0 0;list-style:none;color:var(--muted);font-size:15px}
+.merch li{padding:9px 0;border-bottom:1px solid var(--line);display:flex;justify-content:space-between}
+footer{margin-top:90px;background:var(--hero1);color:var(--hero-ink);text-align:center;padding:60px 24px calc(60px + env(safe-area-inset-bottom,0px))}
+footer h2{color:var(--hero-gold);font-size:38px}
+footer p{opacity:.7;margin:8px 0 0;font-size:15px}
+@media (max-width:760px){.merch{grid-template-columns:1fr}.hero{padding:80px 0 70px}.hero::before{inset:12px}}
+</style>
+</head>
+<body>
+<nav><div class="wrap"><b>THUNDER</b><div><a href="#anggota">Anggota</a><a href="#prestasi">Prestasi</a><a href="#merch">Baju angkatan</a></div></div></nav>
+
+<header class="hero">
+  <div class="wrap">
+    <small>Angkatan 13</small>
+    <h1>THUNDER</h1>
+    <p><i style="color:var(--hero-gold)">Thirteen Undying Generation.</i> Dari berbagai kota, kita bertemu, belajar, dan tumbuh bersama. Inilah catatan perjalanan kita.</p>
+    <div class="stats">
+      <div><b id="sN">0</b>anggota</div>
+      <div><b id="sC">0</b>kota asal</div>
+      <div><b id="sP">0</b>prestasi</div>
+    </div>
+  </div>
+</header>
+
+<main class="wrap">
+  <section id="anggota">
+    <h2>Anggota</h2>
+    <p class="lede">Cari nama teman atau saring berdasarkan kota asal.</p>
+    <div class="tools">
+      <input id="q" type="search" placeholder="Cari nama…" aria-label="Cari nama">
+      <select id="f" aria-label="Filter kota asal"><option value="">Semua kota</option></select>
+    </div>
+    <div class="grid" id="grid"></div>
+  </section>
+
+  <section id="prestasi">
+    <h2>Prestasi angkatan</h2>
+    <p class="lede">Langkah-langkah yang membuat kita bangga, disusun dari yang terbaru.</p>
+    <div class="tl" id="tl"></div>
+  </section>
+
+  <section id="merch">
+    <h2>Baju angkatan</h2>
+    <p class="lede">Pilih warna untuk melihat tampilannya.</p>
+    <div class="merch">
+      <div class="shirt">
+        <svg viewBox="0 0 200 210" role="img" aria-label="Pratinjau kaos angkatan">
+          <path id="shirtPath" d="M72 18 L38 34 L8 74 L36 96 L56 80 L56 196 L144 196 L144 80 L164 96 L192 74 L162 34 L128 18 Q100 46 72 18Z" fill="#14213A" stroke="#9A7B35" stroke-width="1.5"/>
+          <text id="t1" x="100" y="102" text-anchor="middle" font-family="Cormorant Garamond,serif" font-size="22" fill="#D4B46A">THUNDER</text>
+          <text id="t2" x="100" y="122" text-anchor="middle" font-family="Jost,sans-serif" font-size="10" letter-spacing="3" fill="#D4B46A">ANGKATAN 13</text>
+        </svg>
+      </div>
+      <div>
+        <h3 id="mName">Kaos Navy Klasik</h3>
+        <div class="sw" id="sw"></div>
+        <ul>
+          <li><span>Bahan</span><span>Cotton combed 24s</span></li>
+          <li><span>Sablon</span><span>Emas, polyflex</span></li>
+          <li><span>Ukuran</span><span>S – XXL</span></li>
+          <li><span>Pemesanan</span><span>Hubungi koordinator</span></li>
+        </ul>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <h2>Sampai jumpa di puncak</h2>
+  <p>THUNDER · Thirteen Undying Generation</p>
+</footer>
+
+<script>
+/* Ganti data di bawah ini dengan data angkatanmu. */
+const MEMBERS=[
+ ["Aditya Pratama","Jakarta"],["Bunga Lestari","Bandung"],["Candra Wijaya","Surabaya"],["Dewi Anggraini","Yogyakarta"],
+ ["Eko Saputra","Medan"],["Farah Nabila","Jakarta"],["Galih Ramadhan","Makassar"],["Hana Putri","Bandung"],
+ ["Irfan Hakim","Palembang"],["Jihan Maharani","Surabaya"],["Kevin Santoso","Semarang"],["Laila Zahra","Yogyakarta"],
+ ["Maulana Yusuf","Balikpapan"],["Nadia Kusuma","Denpasar"],["Oka Mahendra","Denpasar"],["Putri Ayu","Medan"]
+].map(([n,c])=>({n,c}));
+const AWARDS=[
+ ["2026","Juara 1 Lomba Karya Ilmiah Nasional","Tim Aditya, Bunga, dan Candra membawa pulang piala dari 120 peserta."],
+ ["2025","Juara 2 Debat Antar Universitas","Dewi dan Farah mewakili angkatan di final yang ketat."],
+ ["2025","Penghargaan Angkatan Terkompak","Diberikan atas kegiatan bakti sosial yang diikuti hampir seluruh anggota."],
+ ["2024","Medali Perunggu Kejuaraan Atletik","Galih meraih medali pertama bagi angkatan kita."]
+];
+const SHIRTS=[
+ ["Kaos Navy Klasik","#14213A","#D4B46A"],["Kaos Ivory Elegan","#F1ECE0","#14213A"],["Kaos Hijau Botol","#1F4034","#E3CF9A"]
+];
+const $=s=>document.querySelector(s);
+const cities=[...new Set(MEMBERS.map(m=>m.c))].sort();
+$('#sN').textContent=MEMBERS.length;$('#sC').textContent=cities.length;$('#sP').textContent=AWARDS.length;
+cities.forEach(c=>$('#f').insertAdjacentHTML('beforeend',`<option>${c}</option>`));
+function draw(){
+  const q=$('#q').value.trim().toLowerCase(),f=$('#f').value;
+  const list=MEMBERS.filter(m=>m.n.toLowerCase().includes(q)&&(!f||m.c===f));
+  $('#grid').innerHTML=list.length?list.map(m=>`<div class="card"><div class="ava">${m.n.split(' ').map(w=>w[0]).slice(0,2).join('')}</div><h3>${m.n}</h3><p>${m.c}</p></div>`).join(''):'<p class="empty">Tidak ada nama yang cocok. Coba kata kunci lain.</p>';
+}
+$('#q').addEventListener('input',draw);$('#f').addEventListener('change',draw);draw();
+$('#tl').innerHTML=AWARDS.map(a=>`<article><time>${a[0]}</time><h3>${a[1]}</h3><p>${a[2]}</p></article>`).join('');
+SHIRTS.forEach((s,i)=>{
+  const b=document.createElement('button');b.style.background=s[1];b.setAttribute('aria-label',s[0]);b.setAttribute('aria-pressed',i==0);
+  b.onclick=()=>{$('#shirtPath').setAttribute('fill',s[1]);$('#t1').setAttribute('fill',s[2]);$('#t2').setAttribute('fill',s[2]);$('#mName').textContent=s[0];
+    document.querySelectorAll('#sw button').forEach(x=>x.setAttribute('aria-pressed',x===b));};
+  $('#sw').appendChild(b);
+});
+</script>
+</body>
+</html>
